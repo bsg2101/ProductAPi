@@ -7,20 +7,20 @@
 </head>
 <body>
     <div class="container">
-        <form method="post" id="formPost">
+        <form method="post" id="productForm">
             <div class="form">
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name" />
+                <input type="text" id="name" name="name" required />
             </div>
 
             <div class="form">
                 <label for="price">Price:</label>
-                <input type="text" id="price" name="price" />
+                <input type="text" id="price" name="price" required />
             </div>
             <div class="form">
                 <label for="category">Category:</label>
-                <select id="category">
-                    <option value="pc">PC</option>
+                <select id="category" name="category" required>
+                    <option value="pc" selected>PC</option>
                     <option value="meyve">Meyve</option>
                     <option value="sebze">Sebze</option>
                 </select>
@@ -37,7 +37,6 @@
                 </tr>
             </thead>
             <tbody>
-
             </tbody>
         </table>
     </div>

@@ -23,11 +23,12 @@ namespace App.Product.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(Product product)
+        public async Task<IActionResult> Post([FromForm] Product product)
         {
+           
             _products.Add(product);
-            var json = JsonSerializer.Serialize(product);
-            return CreatedAtAction(nameof(Get), new { id = product.Id }, json);
+            return Ok(new {message = "başarılı" });
+          
         }
 
         [HttpPut("{id}")]
