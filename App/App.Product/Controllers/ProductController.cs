@@ -8,10 +8,10 @@ namespace App.Product.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private static List<Product> _products = new();
+        private static List<Product> _products = new List<Product>();
 
         [HttpGet]
-        public IEnumerable<Product> Get()
+        public List<Product> Get()
         {
             return _products;
         }
