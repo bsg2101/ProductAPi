@@ -26,7 +26,6 @@ form.addEventListener('submit', async (e) => {
     console.log(result);
 
     if (response.ok) {
-        alert("Product added successfully");
         console.log("Product added successfully");
     }
     else {
@@ -38,6 +37,7 @@ form.addEventListener('submit', async (e) => {
 // productları listleme işlemi
 async function ProductList() {
     var productList = document.getElementById("productsList");
+    var list = document.getElementById("list");
     const response = await fetch('/api/Product');
     if (!response.ok) {
         throw new Error('Network response was not ok ' + response.statusText);
@@ -52,38 +52,43 @@ async function ProductList() {
         const price = p.price;
         const category = p.category;
         console.log(name, price, category);
-        tr.innerHTML = `<td>${name}</td><td>${price}</td><td>${category}</td>`;
+        tr.innerHTML = `<td>${name}</td><td>${price}</td><td>${category}</td><td> <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Edit</button> <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal1">Delete</button></td>`;
         productList.appendChild(tr);
     });
+    list.click();
 
 }
 
-//async function fetchProducts() {
-//    const response = await fetch('/api/Product');
-//    const products = await response.json();
-//    const productList = document.getElementById('productsList');
-//    //document.getElementById('productTable').style.display = 'none';
-//    productList.innerHTML = "";
-//    console.log(products);
-//    products.forEach(product => {
-//        const tr = document.createElement('tr');
+function openINput() {
+   
+}
 
-//        let name = product.name;
-//        let price = product.price;
-//        let category = product.category;
+async function put() {
+    alert("put");
+    var ProductList = document.getElementById("productsList");
+    var form = document.getElementById("productForm");
+    var formData = new FormData(form);
+    var data = {};
+    formData.forEach((value, key) => {
+        data[key] = value;
+    });
 
-//        const productArray = [
-//            name, price, category
-//        ];
+    fetch('/api/Product', {
+        method: 'PUT',
+        body: formData
+    }).then(response => {
+        if (response.ok) {
+            alert("Product updated successfully");
+            console.log("Product updated successfully");
+        } else {
+            alert("Error");
+            console.error("Error");
+        }
+    }).catch(error => {
+        console.error("Network error", error);
+    });
+}
 
-//        for (var i = 0; i < 3; i++) {
-//            const td = document.createElement('td');
-//            td.textContent = `${ productArray[i]}`;
-//            tr.appendChild(td);
-//        }
-//        productList.appendChild(tr);
-//    });
-//}
 
 
 
