@@ -23,24 +23,26 @@ namespace App.Product.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromForm] Product product)
+        public IActionResult Post([FromForm] Product product)
         {
            
-            _products.Add(product);
-            return Ok(new {message = "başarılı" });
+             _products.Add(product);
+            return Ok(new {message = "succes" });
           
         }
-
         [HttpPut("{id}")]
-        public IActionResult Put(int id, Product product)
+        public ActionResult Put(int id, [FromBody] Product updatedProduct)
         {
-            var index = _products.FindIndex(p => p.Id == id);
-            if (index < 0)
+            var product = _products.FirstOrDefault(p => p.Id == id);
+            if (product == null)
             {
                 return NotFound();
             }
 
-            _products[index] = product;
+            product.Name = updatedProduct.Name;
+            product.Price = updatedProduct.Price;
+            product.Category = updatedProduct.Category;
+
             return NoContent();
         }
 
