@@ -37,7 +37,7 @@ function display() {
         listele.innerText = "Gizle";
     } else {
         productList.style.display = "none";
-        listele.innerText = "Listele";
+        listele.innerText = "List";
     }
 }
 async function post() {
