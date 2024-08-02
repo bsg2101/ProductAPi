@@ -58,6 +58,5 @@ namespace App.Product.Controllers
             _products.RemoveAt(index);
             return NoContent();
         }
-        
     }
 }
