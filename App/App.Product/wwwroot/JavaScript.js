@@ -73,8 +73,8 @@ async function post() {
 function openEditModal(id) {
     const product = products.find(p => p.id === id);
     if (product) {
-        document.querySelector("#updateForm #name").value = product.name;
-        document.querySelector("#updateForm #price").value = product.price;
+        document.querySelector("#updateForm #updateName").value = product.name;
+        document.querySelector("#updateForm #updatePrice").value = product.price;
 
         const selectItem = document.querySelector("#updateForm #selectItemUpdate");
         if (product.category) {
@@ -102,10 +102,11 @@ async function put() {
         const response = await fetch('/api/Product/' + id, {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json"
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(data) // FormData yerine JSON stringi gönderiliyor
         });
+        console.log(data);
 
         if (response.ok) {
             console.log("Product updated successfully");
